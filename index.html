@@ -10,166 +10,119 @@
   import { inject } from 'https://esm.sh/@vercel/analytics';
   inject();
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{ --bg:#f7f4fc; --text:#2c2342; --muted:#6f6394; --soft:#574a73; --accent:#7c3aed; --accent2:#db2777; --line:#e7dcf5; --card:#ffffff; }
+  :root{ --bg:#f5f1fb; --text:#2c2342; --muted:#6f6394; --soft:#56497a; --accent:#7c3aed; --accent2:#db2777; --line:#e7dcf5; --card:#ffffff; }
   html{ scroll-behavior:smooth; }
   body{ background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; }
-  .serif{ font-family:'Playfair Display',serif; }
-  .muted{ color:var(--muted); }
-  .soft{ color:var(--soft); }
-  .accent{ color:var(--accent); }
-  .accent2{ color:var(--accent2); }
-  .label{ font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-weight:600; }
-  .num-acc{ font-family:'Playfair Display',serif; background:linear-gradient(120deg,#7c3aed,#db2777); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .disp{ font-family:'Quicksand',sans-serif; }
+  .muted{ color:var(--muted); } .soft{ color:var(--soft); } .accent{ color:var(--accent); } .accent2{ color:var(--accent2); }
+  .tile{ background:var(--card); border:1px solid var(--line); border-radius:1.6rem; box-shadow:0 14px 36px -24px rgba(124,58,237,0.35); transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+  .tile-h:hover{ transform:translateY(-4px); box-shadow:0 26px 50px -28px rgba(124,58,237,0.5); }
+  .chip{ background:rgba(124,58,237,0.07); color:var(--accent); border:1px solid rgba(124,58,237,0.16); }
+  .num-acc{ font-family:'Quicksand',sans-serif; background:linear-gradient(120deg,#7c3aed,#db2777); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .grad-text{ background:linear-gradient(120deg,#7c3aed,#db2777); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .rule{ height:1px; background:linear-gradient(90deg,#c9b6ec,transparent); }
-  .tile{ background:var(--card); border:1px solid var(--line); border-radius:1.5rem; box-shadow:0 12px 34px -22px rgba(124,58,237,0.30); }
-  .chip{ background:rgba(124,58,237,0.07); color:var(--accent); border:1px solid rgba(124,58,237,0.18); }
-  .navlink{ position:relative; }
-  .navlink::after{ content:''; position:absolute; left:0; bottom:-3px; width:0; height:1px; background:var(--accent); transition:width .3s; }
-  .navlink:hover::after{ width:100%; }
-  .ulink{ background-image:linear-gradient(var(--accent),var(--accent)); background-size:0% 1px; background-repeat:no-repeat; background-position:0 100%; transition:background-size .3s; padding-bottom:2px; }
-  .ulink:hover{ background-size:100% 1px; }
-  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .pi{ font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; display:block; margin-bottom:1px; }
+  .seclabel{ font-size:.66rem; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .navlink{ position:relative; } .navlink::after{ content:''; position:absolute; left:0; bottom:-3px; width:0; height:1px; background:var(--accent); transition:width .3s; } .navlink:hover::after{ width:100%; }
+  .reveal{ opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
   .reveal.show{ opacity:1; transform:none; }
-  @media (prefers-reduced-motion: reduce){ .reveal{ transition:opacity .3s ease; transform:none; } }
+  @media (prefers-reduced-motion: reduce){ .reveal{ transition:opacity .3s; transform:none; } }
   ::-webkit-scrollbar{ width:9px; } ::-webkit-scrollbar-track{ background:var(--bg); } ::-webkit-scrollbar-thumb{ background:#ddd0f3; border-radius:5px; } ::-webkit-scrollbar-thumb:hover{ background:var(--accent); }
 </style>
 </head>
 <body class="antialiased">
 
-<!-- NAV -->
-<nav class="sticky top-0 z-50 backdrop-blur-md" style="background:rgba(247,244,252,0.8); border-bottom:1px solid var(--line);">
-  <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#top" class="serif text-lg">Priyanka Mangrulkar</a>
-    <div class="hidden sm:flex gap-7 text-sm muted">
-      <a href="#about" class="navlink hover:text-[color:var(--accent)]">About</a>
-      <a href="#experience" class="navlink hover:text-[color:var(--accent)]">Experience</a>
+<nav class="sticky top-0 z-50 backdrop-blur-md" style="background:rgba(245,241,251,0.82); border-bottom:1px solid var(--line);">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#top" class="disp font-bold text-lg grad-text">Priyanka Mangrulkar</a>
+    <div class="hidden sm:flex gap-7 text-sm muted disp">
       <a href="#work" class="navlink hover:text-[color:var(--accent)]">Work</a>
+      <a href="#stack" class="navlink hover:text-[color:var(--accent)]">Stack</a>
+      <a href="#experience" class="navlink hover:text-[color:var(--accent)]">Experience</a>
       <a href="#contact" class="navlink hover:text-[color:var(--accent)]">Contact</a>
     </div>
   </div>
 </nav>
 
-<main id="top" class="max-w-4xl mx-auto px-6">
+<main id="top" class="max-w-6xl mx-auto px-5 py-9">
 
-  <!-- HERO -->
-  <header class="pt-20 pb-14 grid md:grid-cols-[1fr_auto] gap-10 items-center">
-    <div>
-      <p class="serif italic text-xl muted mb-5 reveal">Intelligence, engineered.</p>
-      <h1 class="serif text-5xl sm:text-6xl leading-[1.05] mb-6 reveal">Priyanka<br/><span class="grad-text">Mangrulkar</span></h1>
-      <div class="rule w-36 mb-6 reveal"></div>
-      <p class="text-lg soft max-w-xl leading-relaxed reveal">AI Engineer, Data Scientist and Data Engineer. I build intelligent systems end to end: machine-learning models, AI-agent applications, and the data pipelines that feed them.</p>
-      <div class="flex flex-wrap items-center gap-x-6 gap-y-3 mt-7 reveal text-sm">
-        <a href="mailto:mangrulkarp@northeastern.edu" class="ulink accent font-medium">Email</a>
-        <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="ulink accent font-medium">LinkedIn</a>
-        <a href="https://github.com/Priyanka5317/" target="_blank" class="ulink accent font-medium">GitHub</a>
-        <span class="inline-flex items-center gap-2 chip px-3 py-1 rounded-full text-xs font-semibold"><span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent);"></span>Open to Work</span>
+  <!-- TOP BENTO: intro + photo + metrics -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="tile reveal p-8 sm:col-span-2 flex flex-col justify-center">
+      <p class="disp text-xs tracking-[0.3em] uppercase accent mb-3">Intelligence, engineered</p>
+      <h1 class="disp text-4xl sm:text-5xl font-bold leading-tight mb-3">Priyanka <span class="grad-text">Mangrulkar</span></h1>
+      <p class="soft text-lg max-w-xl leading-relaxed">AI Engineer, Data Scientist and Data Engineer. I build intelligent systems end to end: machine-learning models, AI-agent applications, and the data pipelines that feed them.</p>
+      <div class="flex flex-wrap items-center gap-2.5 mt-5 disp">
+        <span class="chip px-3 py-1.5 rounded-full text-xs font-semibold inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent);"></span>Open to Work</span>
+        <span class="chip px-3 py-1.5 rounded-full text-xs font-semibold">Anthropic Certified</span>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-5">
+        <a href="#work" class="disp font-semibold text-sm px-5 py-2.5 rounded-full text-white" style="background:#7c3aed;">View Work</a>
+        <a href="mailto:mangrulkarp@northeastern.edu" class="disp font-semibold text-sm px-5 py-2.5 rounded-full" style="color:#7c3aed; border:1px solid rgba(124,58,237,0.4);">Email</a>
+        <a href="https://github.com/Priyanka5317/" target="_blank" class="disp font-semibold text-sm px-5 py-2.5 rounded-full" style="color:#7c3aed; border:1px solid rgba(124,58,237,0.4);">GitHub</a>
       </div>
     </div>
-    <div class="flex md:block justify-center reveal">
-      <div class="relative">
-        <div class="absolute -inset-3 rounded-full blur-2xl opacity-40" style="background:radial-gradient(circle,#c4b5fd,#f9a8d4);"></div>
-        <img src="/images/profile.jpg" onerror="this.src='/images/profile.svg'" alt="Priyanka Mangrulkar" class="relative w-40 h-40 md:w-44 md:h-44 rounded-full object-cover" style="border:4px solid #fff; box-shadow:0 10px 30px -12px rgba(124,58,237,0.4);"/>
+    <div class="tile reveal overflow-hidden relative min-h-[240px]">
+      <div class="absolute inset-0" style="background:radial-gradient(circle at 50% 38%,#f9a8d4,#c4b5fd);opacity:.45;"></div>
+      <div class="absolute inset-0 flex items-center justify-center p-6">
+        <img src="/images/profile.jpg" onerror="this.src='/images/profile.svg'" alt="Priyanka Mangrulkar" class="w-40 h-40 rounded-full object-cover" style="border:5px solid #fff; box-shadow:0 12px 30px -10px rgba(124,58,237,0.5);"/>
       </div>
     </div>
-  </header>
 
-  <!-- BENTO METRIC STRIP -->
-  <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 pb-16" id="metrics"></section>
-
-  <!-- ABOUT -->
-  <section id="about" class="py-14">
-    <div class="flex items-baseline gap-4 mb-7 reveal">
-      <span class="serif italic text-xl muted">01</span>
-      <h2 class="serif text-3xl">About</h2>
-      <div class="rule flex-1 self-center"></div>
-    </div>
-    <div class="space-y-4 soft leading-loose text-lg max-w-2xl reveal">
-      <p>I am an AI and data engineer who likes owning the full lifecycle, from raw data to a model in production. Currently finishing my <span class="accent2 font-semibold">M.S. in Information Systems at Northeastern University</span>, I focus on data operations, machine learning, and applied AI.</p>
-      <p>I have built multi-agent AI orchestration with LangGraph and Snowflake Cortex semantic search, automated Airflow and AWS Glue pipelines on a Redshift warehouse that cut processing latency by 50%, and shipped predictive and survival models in Python and R. I hold a <span class="accent2 font-semibold">2023 India patent</span> for a signal-processing classifier with 90%+ diagnostic accuracy.</p>
-      <p>I am actively seeking roles in <span class="accent font-semibold">AI Engineering, Data Science, and Data Engineering</span>.</p>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience" class="py-14">
-    <div class="flex items-baseline gap-4 mb-4 reveal">
-      <span class="serif italic text-xl muted">02</span>
-      <h2 class="serif text-3xl">Experience</h2>
-      <div class="rule flex-1 self-center"></div>
-    </div>
-    <div id="experience-list"></div>
-  </section>
+    <div class="tile tile-h reveal p-6"><div class="num-acc text-4xl font-bold">50%</div><p class="muted text-sm mt-2 leading-snug">lower data-processing latency on a Redshift warehouse</p></div>
+    <div class="tile tile-h reveal p-6"><div class="num-acc text-4xl font-bold">90%+</div><p class="muted text-sm mt-2 leading-snug">accuracy on a patented signal-processing classifier</p></div>
+    <div class="tile tile-h reveal p-6"><div class="num-acc text-4xl font-bold">12k+</div><p class="muted text-sm mt-2 leading-snug">tagged segments modeled with dbt on Snowflake</p></div>
+  </div>
 
   <!-- SELECTED WORK -->
-  <section id="work" class="py-14">
-    <div class="flex items-baseline gap-4 mb-4 reveal">
-      <span class="serif italic text-xl muted">03</span>
-      <h2 class="serif text-3xl">Selected Work</h2>
-      <div class="rule flex-1 self-center"></div>
-    </div>
-    <div id="work-list"></div>
-  </section>
+  <div class="flex items-center gap-3 mt-14 mb-5">
+    <h2 class="disp text-2xl font-bold">Selected Work</h2>
+    <span class="seclabel">Problem &middot; Solution &middot; Impact</span>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="work-grid"></div>
 
-  <!-- TOOLKIT (bento) -->
-  <section id="skills" class="py-14">
-    <div class="flex items-baseline gap-4 mb-8 reveal">
-      <span class="serif italic text-xl muted">04</span>
-      <h2 class="serif text-3xl">Stack</h2>
-      <div class="rule flex-1 self-center"></div>
-    </div>
-    <div class="grid sm:grid-cols-2 gap-4" id="skills-grid"></div>
-  </section>
+  <!-- STACK -->
+  <h2 id="stack" class="disp text-2xl font-bold mt-14 mb-5">Stack</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="skills-grid"></div>
+
+  <!-- EXPERIENCE -->
+  <h2 id="experience" class="disp text-2xl font-bold mt-14 mb-5">Experience</h2>
+  <div class="tile reveal p-7" id="exp-tile"></div>
 
   <!-- CERTIFICATIONS -->
-  <section id="certs" class="py-14">
-    <div class="flex items-baseline gap-4 mb-8 reveal">
-      <span class="serif italic text-xl muted">05</span>
-      <h2 class="serif text-3xl">Certifications</h2>
-      <div class="rule flex-1 self-center"></div>
-    </div>
-    <div class="grid sm:grid-cols-2 gap-4" id="certs-grid"></div>
-  </section>
+  <h2 class="disp text-2xl font-bold mt-14 mb-5">Certifications</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="certs-grid"></div>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-24 text-center">
-    <p class="serif italic muted mb-3 reveal">06 &middot; Finish line</p>
-    <h2 class="serif text-4xl sm:text-5xl mb-5 reveal">Let's build something</h2>
-    <p class="soft max-w-md mx-auto mb-9 reveal">Open to roles in AI Engineering, Data Science, and Data Engineering. If you are building something intelligent, I would love to talk.</p>
-    <div class="flex flex-wrap justify-center gap-4 reveal">
-      <a href="mailto:mangrulkarp@northeastern.edu" class="serif text-lg px-8 py-3 rounded-full text-white" style="background:linear-gradient(120deg,#7c3aed,#db2777);">Say hello</a>
-      <a href="https://github.com/Priyanka5317/" target="_blank" class="serif text-lg px-8 py-3 rounded-full" style="color:var(--accent); border:1px solid rgba(124,58,237,0.4);">GitHub</a>
+  <div id="contact" class="tile reveal mt-14 p-10 text-center" style="background:linear-gradient(120deg,#f3e8ff,#fce7f3);">
+    <h2 class="disp text-3xl font-bold mb-2">Let's build something</h2>
+    <p class="soft max-w-md mx-auto mb-6">Open to roles in AI Engineering, Data Science, and Data Engineering. If you are building something intelligent, I would love to talk.</p>
+    <div class="flex flex-wrap justify-center gap-3 disp">
+      <a href="mailto:mangrulkarp@northeastern.edu" class="font-semibold px-6 py-3 rounded-full text-white" style="background:#7c3aed;">Email me</a>
+      <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="font-semibold px-6 py-3 rounded-full" style="color:#7c3aed; border:1px solid rgba(124,58,237,0.4);">LinkedIn</a>
     </div>
-  </section>
+  </div>
 
 </main>
 
-<footer class="text-center text-xs muted pb-10 serif italic">Priyanka Mangrulkar &middot; AI, Data Science & Data Engineering &middot; 2026</footer>
+<footer class="text-center text-xs muted pb-10 disp">Priyanka Mangrulkar &middot; AI, Data Science & Data Engineering &middot; 2026</footer>
 
 <script>
-// ===== DATA =====
-const metrics = [
-  { n:'50%', l:'lower data-processing latency' },
-  { n:'90%+', l:'patent classifier accuracy' },
-  { n:'12k+', l:'segments modeled with dbt' },
-  { n:'AI', l:'multi-agent LangGraph systems' },
-];
 const timeline = [
   { date:'May 2026', title:'M.S. Information Systems', org:'Northeastern University · Boston, MA', desc:'Data Management, Database Design, Data Structures & Algorithms, Data Science with Python.' },
-  { date:'May 2025 - Dec 2025', title:'Data Science Co-op', org:'WhoozCooking · Boston, MA', desc:'Built and automated ETL pipelines (Python, AWS Glue, Airflow) on a Redshift star-schema warehouse, cutting processing latency 50%. Ran churn analysis and A/B testing with logistic regression and chi-squared tests, lifting week-2 retention 12%.' },
-  { date:'Nov 2024 - May 2025', title:'Data Analyst Intern', org:'IST Management Services · Boston, MA', desc:'Automated SQL-based extraction and KPI workflows on 1,000+ daily records, building validation and discrepancy-detection logic. Lifted reporting accuracy 40% and cut manual effort 50%.' },
+  { date:'May 2025 - Dec 2025', title:'Data Science Co-op', org:'WhoozCooking · Boston, MA', desc:'Built and automated ETL pipelines (Python, AWS Glue, Airflow) on a Redshift star-schema warehouse, cutting processing latency 50%. Ran churn analysis and A/B testing, lifting week-2 retention 12%.' },
+  { date:'Nov 2024 - May 2025', title:'Data Analyst Intern', org:'IST Management Services · Boston, MA', desc:'Automated SQL-based extraction and KPI workflows on 1,000+ daily records, with validation and discrepancy-detection logic. Lifted reporting accuracy 40% and cut manual effort 50%.' },
   { date:'Apr 2021 - Apr 2022', title:'Research Analyst', org:'Team Maverick · Pune, India', desc:'Built predictive and time-series statistical models in Python and MATLAB, improving system accuracy 20% on telemetry data.' },
   { date:'Aug 2019 - Aug 2023', title:'B.E. Computer Electronics & Telecommunication', org:'Savitribai Phule Pune University · India', desc:'Patent: signal-processing classifier for chronic-disease diagnosis (India, 2023).' },
 ];
 const projects = [
-  { title:'PodcastIQ', tags:['LangGraph','Snowflake','dbt','Airflow'], solution:'Built an end-to-end pipeline on Airflow into Snowflake, dbt models across 12,000+ tagged segments, Snowflake Cortex AI semantic search, and a 6-agent LangGraph multi-agent orchestration layer.', impact:'Surfaced segment-level engagement signals and AI-assisted retrieval over the full catalog.', github:'https://github.com/Priyanka5317/PodcastIQ' },
-  { title:'SwipeHire.io', tags:['AI/ML','Recommenders','Full-Stack'], solution:'Co-built an AI recruitment platform with swipe-based matching driven by algorithms that learn from every interaction.', impact:'Streamlined matching, reducing time-to-match for both candidates and employers.', github:'https://swipehire.io' },
-  { title:'F1 Tire Strategy Modeling', tags:['R','Survival Analysis','Mixed Models'], solution:'Built an R Shiny app merging lap and weather data with Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.', impact:'Improved simulated pit-strategy success by 25% with real-time tactical what-ifs.', github:'https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing' },
-  { title:'Pulse Diagnosis Classifier (Patent)', tags:['Signal Processing','C/C++','Classification'], solution:'Built a non-invasive IR-sensor system on Arduino UNO, capturing 1,000+ pulse datasets and developing C/C++ signal-processing classification algorithms.', impact:'Reached 90%+ diagnostic accuracy and secured Indian Patent No. 202321031953 (2023).', github:'https://github.com/Priyanka5317/' },
-  { title:'WhoozCooking Data Platform', tags:['Python','AWS Glue','Airflow','Redshift'], solution:'Engineered Python APIs and ETL workflows feeding a Redshift warehouse with schema design and data-quality monitoring.', impact:'Cut data processing time by 50% and enabled self-serve analytics across the org.', github:'https://github.com/Priyanka5317/WhoozCookingAPI' },
-  { title:'Sleep Aid NLP Sentiment', tags:['Python','NLP','TextBlob'], solution:'Processed 10,000+ Walmart reviews with pandas, n-grams, word clouds, and TextBlob sentiment scoring.', impact:'Revealed a 15% higher preference for 10mg doses and lifted insight relevance 40%.', github:'https://github.com/Priyanka5317/' },
+  { title:'PodcastIQ', tags:['LangGraph','Snowflake','dbt','Airflow'], problem:'Podcast teams could not see why listeners drop off or which segments drive engagement.', solution:'Built an end-to-end pipeline on Airflow into Snowflake, dbt models across 12,000+ tagged segments, Snowflake Cortex AI semantic search, and a 6-agent LangGraph orchestration layer.', impact:'Surfaced segment-level engagement signals and AI-assisted retrieval over the full catalog.', github:'https://github.com/Priyanka5317/PodcastIQ' },
+  { title:'SwipeHire.io', tags:['AI/ML','Recommenders','Full-Stack'], problem:'Job boards bury candidates in irrelevant listings and recruiters in unqualified applicants.', solution:'Co-built an AI recruitment platform with swipe-based matching driven by algorithms that learn from every interaction.', impact:'Streamlined matching, reducing time-to-match for both candidates and employers.', github:'https://swipehire.io' },
+  { title:'F1 Tire Strategy Modeling', tags:['R','Survival Analysis','Mixed Models'], problem:'A wrong tire call can cost a race, so teams must model grip against durability.', solution:'Built an R Shiny app merging lap and weather data with Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.', impact:'Improved simulated pit-strategy success by 25% with real-time tactical what-ifs.', github:'https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing' },
+  { title:'Pulse Diagnosis Classifier (Patent)', tags:['Signal Processing','C/C++','Classification'], problem:'Early chronic-disease detection often needs expensive, invasive testing.', solution:'Built a non-invasive IR-sensor system on Arduino UNO, capturing 1,000+ pulse datasets and developing C/C++ signal-processing classification algorithms.', impact:'Reached 90%+ diagnostic accuracy and secured Indian Patent No. 202321031953 (2023).', github:'https://github.com/Priyanka5317/' },
+  { title:'WhoozCooking Data Platform', tags:['Python','AWS Glue','Airflow','Redshift'], problem:'Teams lacked a unified, reliable backend for user and engagement data.', solution:'Engineered Python APIs and ETL workflows feeding a Redshift warehouse with schema design and data-quality monitoring.', impact:'Cut data processing time by 50% and enabled self-serve analytics across the org.', github:'https://github.com/Priyanka5317/WhoozCookingAPI' },
+  { title:'Sleep Aid NLP Sentiment', tags:['Python','NLP','TextBlob'], problem:'Marketers had no structured read on what customers valued in reviews.', solution:'Processed 10,000+ Walmart reviews with pandas, n-grams, word clouds, and TextBlob sentiment scoring.', impact:'Revealed a 15% higher preference for 10mg doses and lifted insight relevance 40%.', github:'https://github.com/Priyanka5317/' },
 ];
 const skills = {
   'AI & Machine Learning': ['Scikit-learn','statsmodels','Predictive Modeling','Logistic Regression','Survival Analysis','A/B Testing','NLP / TextBlob','LangGraph Agents','Snowflake Cortex AI'],
@@ -184,61 +137,55 @@ const certs = [
   { title:'Effective Data Scientists', desc:'Communication · Stakeholder Management · Storytelling', org:'LinkedIn Learning · May 2025' },
 ];
 
-// ===== RENDER =====
-document.getElementById('metrics').innerHTML = metrics.map(m=>`
-  <div class="tile reveal p-6">
-    <div class="num-acc text-4xl sm:text-5xl font-bold leading-none">${m.n}</div>
-    <p class="muted text-sm mt-3 leading-snug">${m.l}</p>
-  </div>`).join('');
-
-document.getElementById('experience-list').innerHTML = timeline.map(e=>`
-  <div class="reveal grid sm:grid-cols-[150px_1fr] gap-1 sm:gap-7 py-6" style="border-top:1px solid var(--line);">
-    <div class="text-sm muted pt-1">${e.date}</div>
-    <div>
-      <h3 class="serif text-xl">${e.title}</h3>
-      <p class="accent text-sm mb-2">${e.org}</p>
-      <p class="soft leading-relaxed text-[0.95rem] max-w-2xl">${e.desc}</p>
+document.getElementById('work-grid').innerHTML = projects.map((p,i)=>`
+  <a href="${p.github}" target="_blank" class="tile tile-h reveal p-6 block ${i===0?'lg:col-span-2':''}">
+    <div class="flex items-start justify-between gap-3">
+      <h3 class="disp text-xl font-bold">${p.title}</h3>
+      <span class="accent text-lg">&#8599;</span>
     </div>
-  </div>`).join('');
-
-document.getElementById('work-list').innerHTML = projects.map(p=>`
-  <a href="${p.github}" target="_blank" class="reveal group block py-7" style="border-top:1px solid var(--line);">
-    <div class="flex items-baseline justify-between gap-4">
-      <h3 class="serif text-2xl group-hover:text-[color:var(--accent)] transition">${p.title}</h3>
-      <span class="muted group-hover:text-[color:var(--accent)] transition text-xl">&#8599;</span>
+    <div class="flex flex-wrap gap-1.5 mt-2 mb-4">${p.tags.map(t=>`<span class="chip px-2 py-0.5 rounded-full text-[0.62rem] disp">${t}</span>`).join('')}</div>
+    <div class="space-y-2.5">
+      <div><span class="pi" style="color:#7c3aed;">The Problem</span><p class="muted text-[0.86rem] leading-relaxed">${p.problem}</p></div>
+      <div><span class="pi" style="color:#db2777;">The Solution</span><p class="muted text-[0.86rem] leading-relaxed">${p.solution}</p></div>
+      <div><span class="pi" style="color:#16a34a;">The Impact</span><p class="muted text-[0.86rem] leading-relaxed">${p.impact}</p></div>
     </div>
-    <p class="label mt-1 mb-3">${p.tags.join(' &middot; ')}</p>
-    <p class="soft leading-relaxed max-w-2xl">${p.solution}</p>
-    <p class="accent2 text-sm mt-2 max-w-2xl">${p.impact}</p>
   </a>`).join('');
 
 document.getElementById('skills-grid').innerHTML = Object.entries(skills).map(([k,arr])=>`
   <div class="tile reveal p-6">
-    <p class="label mb-3">${k}</p>
-    <div class="flex flex-wrap gap-2">${arr.map(s=>`<span class="chip px-2.5 py-1 rounded-full text-xs">${s}</span>`).join('')}</div>
+    <p class="seclabel mb-3">${k}</p>
+    <div class="flex flex-wrap gap-2">${arr.map(s=>`<span class="chip px-2.5 py-1 rounded-full text-xs disp">${s}</span>`).join('')}</div>
+  </div>`).join('');
+
+document.getElementById('exp-tile').innerHTML = timeline.map((e,i)=>`
+  <div class="grid sm:grid-cols-[150px_1fr] gap-1 sm:gap-6 py-4 ${i?'border-t':''}" style="${i?'border-color:var(--line);':''}">
+    <div class="text-sm muted">${e.date}</div>
+    <div>
+      <h3 class="disp font-semibold">${e.title}</h3>
+      <p class="accent text-sm mb-1">${e.org}</p>
+      <p class="muted text-[0.9rem] leading-relaxed">${e.desc}</p>
+    </div>
   </div>`).join('');
 
 document.getElementById('certs-grid').innerHTML = certs.map(c=>`
-  <div class="tile reveal p-6">
-    <p class="label mb-2" style="color:var(--accent);">Certified</p>
-    <h3 class="serif text-lg">${c.title}</h3>
-    <p class="muted text-sm mt-1">${c.desc}</p>
-    <p class="accent2 text-xs mt-2">${c.org}</p>
+  <div class="tile tile-h reveal p-6">
+    <p class="seclabel mb-2" style="color:var(--accent2);">Certified</p>
+    <h3 class="disp font-semibold leading-snug">${c.title}</h3>
+    <p class="muted text-xs mt-1">${c.desc}</p>
+    <p class="accent text-xs mt-2">${c.org}</p>
   </div>`).join('');
 
-// ===== REVEAL =====
 function checkReveals(){
   const vh = window.innerHeight || document.documentElement.clientHeight;
   document.querySelectorAll('.reveal:not(.show)').forEach(el=>{
     const r = el.getBoundingClientRect();
-    if (r.top < vh*0.92 && r.bottom > 0) el.classList.add('show');
+    if (r.top < vh*0.93 && r.bottom > 0) el.classList.add('show');
   });
 }
 window.addEventListener('scroll', checkReveals, { passive:true });
 window.addEventListener('resize', checkReveals);
 document.addEventListener('visibilitychange', checkReveals);
-checkReveals();
-setTimeout(checkReveals, 100);
+checkReveals(); setTimeout(checkReveals, 100);
 </script>
 </body>
 </html>
