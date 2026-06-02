@@ -11,25 +11,25 @@
   import { inject } from 'https://esm.sh/@vercel/analytics';
   inject();
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: {
       extend: {
         fontFamily: {
-          display: ['Space Grotesk', 'sans-serif'],
+          display: ['Quicksand', 'sans-serif'],
           sans: ['Inter', 'sans-serif'],
           mono: ['JetBrains Mono', 'monospace'],
         },
         colors: {
-          bg: '#05030f',
-          card: '#0e0a22',
-          border: '#1f1840',
-          ink: '#ece9fb',
-          muted: '#8b84b5',
-          violet: '#a855f7',
-          cyan: '#22d3ee',
-          magenta: '#ec4899',
+          bg: '#140d1f',
+          card: '#1e1533',
+          border: '#2e2447',
+          ink: '#f3eefb',
+          muted: '#b6a9d6',
+          violet: '#a78bfa',
+          cyan: '#c4b5fd',
+          magenta: '#f9a8d4',
         }
       }
     }
@@ -37,23 +37,31 @@
 </script>
 <style>
   html { scroll-behavior: smooth; }
-  body { background:#05030f; color:#ece9fb; font-family:'Inter',sans-serif; overflow-x:hidden; }
+  body { background:#140d1f; color:#f3eefb; font-family:'Inter',sans-serif; overflow-x:hidden; }
 
-  #bg3d { position:fixed; inset:0; width:100vw; height:100vh; z-index:-1; pointer-events:none; display:block; }
+  #bg3d { position:fixed; inset:0; width:100vw; height:100vh; z-index:-2; pointer-events:none; display:block; }
+
+  /* readability veil between the 3D and content */
+  #veil {
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(120% 90% at 50% 40%, rgba(20,13,31,0.30), rgba(20,13,31,0.55) 100%),
+      linear-gradient(180deg, rgba(20,13,31,0.50) 0%, rgba(20,13,31,0.34) 40%, rgba(20,13,31,0.50) 100%);
+  }
 
   /* gradient base behind canvas */
   body::before {
-    content:''; position:fixed; inset:0; z-index:-2;
+    content:''; position:fixed; inset:0; z-index:-3;
     background:
-      radial-gradient(60% 50% at 75% 25%, rgba(168,85,247,0.14), transparent 60%),
-      radial-gradient(55% 45% at 20% 70%, rgba(34,211,238,0.10), transparent 60%),
-      linear-gradient(180deg, #05030f 0%, #080527 55%, #05030f 100%);
+      radial-gradient(60% 50% at 75% 25%, rgba(167,139,250,0.14), transparent 60%),
+      radial-gradient(55% 45% at 20% 70%, rgba(196,181,253,0.10), transparent 60%),
+      linear-gradient(180deg, #140d1f 0%, #1a1030 55%, #140d1f 100%);
   }
 
   ::-webkit-scrollbar { width:8px; }
-  ::-webkit-scrollbar-track { background:#05030f; }
-  ::-webkit-scrollbar-thumb { background:#1f1840; border-radius:4px; }
-  ::-webkit-scrollbar-thumb:hover { background:#a855f7; }
+  ::-webkit-scrollbar-track { background:#140d1f; }
+  ::-webkit-scrollbar-thumb { background:#2e2447; border-radius:4px; }
+  ::-webkit-scrollbar-thumb:hover { background:#a78bfa; }
 
   /* reveals */
   .reveal { opacity:0; transform:translateY(46px) scale(.985); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.34,1.56,.64,1); will-change:opacity,transform; }
@@ -64,42 +72,43 @@
   .reveal.show { opacity:1; transform:none; }
   @media (prefers-reduced-motion: reduce){ .reveal{transition:opacity .4s ease; transform:none;} .reveal.fl,.reveal.fr,.reveal.zm,.reveal.tw{transform:none;} }
 
-  .glow-violet { text-shadow:0 0 38px rgba(168,85,247,0.45), 0 2px 14px rgba(5,3,15,0.9); }
-  .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:linear-gradient(90deg,#a855f7,#22d3ee); transition:width .3s; }
+  .glow-violet { text-shadow:0 0 38px rgba(167,139,250,0.45), 0 2px 14px rgba(20,13,31,0.9); }
+  .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:linear-gradient(90deg,#a78bfa,#c4b5fd); transition:width .3s; }
   .nav-link { position:relative; }
   .nav-link:hover::after { width:100%; }
 
   .pill { transition:all .3s; }
-  .pill:hover { background:#a855f7; color:#fff; border-color:#a855f7; transform:translateY(-2px); box-shadow:0 6px 22px rgba(168,85,247,0.35); }
+  .pill:hover { background:#a78bfa; color:#fff; border-color:#a78bfa; transform:translateY(-2px); box-shadow:0 6px 22px rgba(167,139,250,0.35); }
 
   .card { transition:all .4s cubic-bezier(.2,.8,.2,1); }
-  .card:hover { transform:translateY(-6px); border-color:#a855f7; box-shadow:0 24px 60px -24px rgba(168,85,247,0.5); }
+  .card:hover { transform:translateY(-6px); border-color:#a78bfa; box-shadow:0 24px 60px -24px rgba(167,139,250,0.5); }
 
-  .section-num { font-family:'Space Grotesk',sans-serif; font-weight:700; background:linear-gradient(135deg,#a855f7,#22d3ee); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .section-num { font-family:'Quicksand',sans-serif; font-weight:700; background:linear-gradient(135deg,#a78bfa,#c4b5fd); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .chip-label { font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; }
 
   /* timeline */
   .timeline { position:relative; }
-  .timeline::before { content:''; position:absolute; left:20px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,#a855f7,#22d3ee,transparent); }
+  .timeline::before { content:''; position:absolute; left:20px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,#a78bfa,#c4b5fd,transparent); }
   @media(min-width:768px){ .timeline::before{ left:50%; transform:translateX(-50%);} .tl-item{width:50%;} .tl-item.left{padding-right:3rem; text-align:right;} .tl-item.right{margin-left:50%; padding-left:3rem;} .tl-item.left .tl-dot{right:-9px; left:auto;} .tl-item.right .tl-dot{left:-9px;} }
   .tl-item { position:relative; padding-left:3.5rem; margin-bottom:2.6rem; }
   @media(min-width:768px){ .tl-item{ padding-left:0; } }
-  .tl-dot { position:absolute; left:12px; top:7px; width:18px; height:18px; border-radius:50%; background:#a855f7; border:3px solid #05030f; box-shadow:0 0 0 3px #a855f7, 0 0 16px rgba(168,85,247,.6); z-index:2; }
+  .tl-dot { position:absolute; left:12px; top:7px; width:18px; height:18px; border-radius:50%; background:#a78bfa; border:3px solid #140d1f; box-shadow:0 0 0 3px #a78bfa, 0 0 16px rgba(167,139,250,.6); z-index:2; }
 
   /* loader */
-  #loader { position:fixed; inset:0; z-index:100; background:#05030f; display:flex; align-items:center; justify-content:center; transition:opacity .8s ease; }
+  #loader { position:fixed; inset:0; z-index:100; background:#140d1f; display:flex; align-items:center; justify-content:center; transition:opacity .8s ease; }
   #loader.hide { opacity:0; pointer-events:none; }
   .loader-inner { text-align:center; width:min(78vw,340px); }
-  .loader-logo { font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:.18em; font-size:1.1rem; background:linear-gradient(90deg,#a855f7,#22d3ee); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:1rem; }
-  .loader-bar { height:3px; background:#1f1840; border-radius:3px; overflow:hidden; }
-  .loader-bar > span { display:block; height:100%; width:40%; background:linear-gradient(90deg,#a855f7,#22d3ee); animation:ldr 1.1s cubic-bezier(.6,0,.4,1) infinite; }
+  .loader-logo { font-family:'Quicksand',sans-serif; font-weight:700; letter-spacing:.18em; font-size:1.1rem; background:linear-gradient(90deg,#a78bfa,#c4b5fd); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:1rem; }
+  .loader-bar { height:3px; background:#2e2447; border-radius:3px; overflow:hidden; }
+  .loader-bar > span { display:block; height:100%; width:40%; background:linear-gradient(90deg,#a78bfa,#c4b5fd); animation:ldr 1.1s cubic-bezier(.6,0,.4,1) infinite; }
   @keyframes ldr { 0%{transform:translateX(-120%);} 100%{transform:translateX(320%);} }
-  .loader-text { margin-top:1rem; font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.22em; color:#8b84b5; text-transform:uppercase; }
+  .loader-text { margin-top:1rem; font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.22em; color:#b6a9d6; text-transform:uppercase; }
 </style>
 </head>
 <body class="antialiased">
 
 <canvas id="bg3d"></canvas>
+<div id="veil"></div>
 
 <div id="loader">
   <div class="loader-inner">
@@ -112,7 +121,7 @@
 <!-- NAV -->
 <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-bg/70 border-b border-border">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="#home" class="font-display font-bold text-lg tracking-wider" style="background:linear-gradient(90deg,#a855f7,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;">P.MANGRULKAR</a>
+    <a href="#home" class="font-display font-bold text-lg tracking-wider" style="background:linear-gradient(90deg,#a78bfa,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent;">P.MANGRULKAR</a>
     <div class="hidden md:flex gap-8 text-sm text-muted font-mono uppercase tracking-wider">
       <a href="#about" class="nav-link hover:text-violet">About</a>
       <a href="#experience" class="nav-link hover:text-violet">Experience</a>
@@ -127,35 +136,34 @@
 <section id="home" class="min-h-screen flex items-center px-6 pt-20 relative">
   <div class="max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-12 items-center relative z-10">
     <div class="md:col-span-2">
-      <p class="font-display text-cyan text-xs tracking-[0.32em] mb-4 reveal uppercase">// Intelligence, engineered</p>
+      <p class="font-display text-cyan text-xs tracking-[0.32em] mb-4 reveal uppercase" style="text-shadow:0 1px 12px rgba(20,13,31,0.95);">// Intelligence, engineered</p>
       <h1 class="text-5xl md:text-7xl font-display font-bold tracking-tight mb-4 reveal leading-tight">
         <span class="text-white">PRIYANKA</span><br/>
         <span class="glow-violet" style="color:#c4a5ff;">MANGRULKAR</span><span class="text-cyan">_</span>
       </h1>
-      <p class="text-xl md:text-2xl text-ink mb-2 reveal font-semibold">AI Engineer · Data Scientist · Data Engineer</p>
-      <p class="text-ink/95 mb-5 reveal max-w-xl mt-3" style="text-shadow:0 1px 14px rgba(5,3,15,0.92);">I build intelligent systems end to end: machine-learning models, AI-agent applications, and the data pipelines that feed them. From multi-agent orchestration to ETL at scale, I turn raw signals into models that ship.</p>
+      <p class="text-xl md:text-2xl text-ink mb-2 reveal font-semibold" style="text-shadow:0 1px 14px rgba(20,13,31,0.95);">AI Engineer · Data Scientist · Data Engineer</p>
+      <p class="text-ink/95 mb-5 reveal max-w-xl mt-3" style="text-shadow:0 1px 14px rgba(20,13,31,0.92);">I build intelligent systems end to end: machine-learning models, AI-agent applications, and the data pipelines that feed them. From multi-agent orchestration to ETL at scale, I turn raw signals into models that ship.</p>
 
       <div class="flex flex-wrap gap-2 mb-6 reveal">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-display font-bold tracking-wider" style="color:#d9c2ff; background:rgba(168,85,247,0.12); border:1px solid rgba(168,85,247,0.5); box-shadow:0 0 16px rgba(168,85,247,0.3);">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-display font-bold tracking-wider" style="color:#e4d6ff; background:rgba(167,139,250,0.22); border:1px solid rgba(167,139,250,0.6); box-shadow:0 0 16px rgba(167,139,250,0.32);">
           ANTHROPIC CERTIFIED
         </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-display font-bold tracking-wider" style="color:#5eead4; background:rgba(45,212,191,0.12); border:1px solid rgba(45,212,191,0.5); box-shadow:0 0 16px rgba(45,212,191,0.3);">
-          <span class="w-2 h-2 rounded-full animate-pulse inline-block" style="background:#2dd4bf;"></span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-display font-bold tracking-wider" style="color:#ffd6ea; background:rgba(249,168,212,0.20); border:1px solid rgba(249,168,212,0.6); box-shadow:0 0 16px rgba(249,168,212,0.32);">
+          <span class="w-2 h-2 rounded-full animate-pulse inline-block" style="background:#f9a8d4;"></span>
           OPEN TO WORK
         </span>
       </div>
 
       <div class="flex flex-wrap gap-4 reveal">
-        <a href="#projects" class="px-6 py-3 font-display font-bold text-sm tracking-wider rounded uppercase transition" style="background:#a855f7; color:#fff;" onmouseover="this.style.background='#22d3ee'" onmouseout="this.style.background='#a855f7'">View Work</a>
-        <a href="#contact" class="px-6 py-3 rounded transition font-mono text-sm uppercase tracking-wider" style="color:#22d3ee; border:1px solid rgba(34,211,238,0.5);" onmouseover="this.style.borderColor='#22d3ee'" onmouseout="this.style.borderColor='rgba(34,211,238,0.5)'">Get in Touch</a>
-        <a href="/" class="px-6 py-3 rounded transition font-mono text-sm uppercase tracking-wider text-muted hover:text-ink" style="border:1px solid #1f1840;">Main Site</a>
+        <a href="#projects" class="px-6 py-3 font-display font-bold text-sm tracking-wider rounded-full uppercase transition" style="background:#a78bfa; color:#1a1030;" onmouseover="this.style.background='#f9a8d4'" onmouseout="this.style.background='#a78bfa'">View Work</a>
+        <a href="#contact" class="px-6 py-3 rounded-full transition font-mono text-sm uppercase tracking-wider" style="color:#d8c9ff; border:1px solid rgba(196,181,253,0.55);" onmouseover="this.style.borderColor='#c4b5fd'" onmouseout="this.style.borderColor='rgba(196,181,253,0.55)'">Get in Touch</a>
       </div>
     </div>
     <div class="flex justify-center reveal">
       <div class="relative">
-        <div class="absolute -inset-4 blur-3xl opacity-30 rounded-full" style="background:radial-gradient(circle,#a855f7,#22d3ee);"></div>
-        <div class="absolute -inset-1 rounded-full" style="border:2px solid rgba(168,85,247,0.4);"></div>
-        <img src="/images/profile.jpg" onerror="this.src='/images/profile.svg'" alt="Priyanka Mangrulkar" class="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover" style="border:4px solid rgba(168,85,247,0.5);"/>
+        <div class="absolute -inset-4 blur-3xl opacity-30 rounded-full" style="background:radial-gradient(circle,#a78bfa,#c4b5fd);"></div>
+        <div class="absolute -inset-1 rounded-full" style="border:2px solid rgba(167,139,250,0.4);"></div>
+        <img src="/images/profile.jpg" onerror="this.src='/images/profile.svg'" alt="Priyanka Mangrulkar" class="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover" style="border:4px solid rgba(167,139,250,0.5);"/>
       </div>
     </div>
   </div>
@@ -167,28 +175,28 @@
     <div class="flex items-center gap-4 mb-10 reveal">
       <span class="section-num text-sm">01</span>
       <h2 class="text-3xl md:text-4xl font-display font-bold text-white">ABOUT</h2>
-      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(168,85,247,0.5),transparent);"></div>
+      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(167,139,250,0.5),transparent);"></div>
     </div>
     <div class="grid md:grid-cols-3 gap-10 reveal">
-      <div class="md:col-span-2 space-y-4 text-ink/90 leading-relaxed">
+      <div class="md:col-span-2 space-y-4 text-ink/95 leading-relaxed" style="text-shadow:0 1px 12px rgba(20,13,31,0.92);">
         <p>I am an AI and data engineer who likes owning the full lifecycle, from raw data to a model in production. Currently finishing my <span class="text-violet font-semibold">M.S. in Information Systems at Northeastern University</span>, I focus on data operations, machine learning, and applied AI.</p>
         <p>I have built multi-agent AI orchestration with LangGraph and Snowflake Cortex semantic search, automated Airflow and AWS Glue pipelines on a Redshift warehouse that cut processing latency by 50%, and shipped predictive and survival models in Python and R. I hold a <span class="text-violet font-semibold">2023 India patent</span> for a signal-processing classifier with 90%+ diagnostic accuracy.</p>
         <p>I am actively seeking roles in <span class="text-violet font-semibold">AI Engineering, Data Science, and Data Engineering</span>.</p>
       </div>
       <div class="space-y-3 text-sm">
-        <div class="p-5 bg-card border border-border rounded-lg">
+        <div class="p-5 bg-card border border-border rounded-2xl">
           <p class="chip-label text-cyan mb-1">EDUCATION</p>
           <p class="text-white font-semibold">M.S. Information Systems</p>
           <p class="text-muted">Northeastern University</p>
           <p class="text-muted text-xs mt-1">Jan 2024 to May 2026</p>
         </div>
-        <div class="p-5 bg-card border border-border rounded-lg">
+        <div class="p-5 bg-card border border-border rounded-2xl">
           <p class="chip-label text-cyan mb-1">FOCUS</p>
           <p class="text-white font-semibold">ML · AI Agents · Data Pipelines</p>
         </div>
-        <div class="p-5 bg-card border border-border rounded-lg">
+        <div class="p-5 bg-card border border-border rounded-2xl">
           <p class="chip-label text-cyan mb-1">STATUS</p>
-          <p class="text-white font-semibold flex items-center gap-2"><span class="w-2 h-2 rounded-full animate-pulse" style="background:#2dd4bf;"></span> Open to Work · 2026</p>
+          <p class="text-white font-semibold flex items-center gap-2"><span class="w-2 h-2 rounded-full animate-pulse" style="background:#f9a8d4;"></span> Open to Work · 2026</p>
         </div>
       </div>
     </div>
@@ -201,7 +209,7 @@
     <div class="flex items-center gap-4 mb-12 reveal">
       <span class="section-num text-sm">02</span>
       <h2 class="text-3xl md:text-4xl font-display font-bold text-white">EXPERIENCE</h2>
-      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(168,85,247,0.5),transparent);"></div>
+      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(167,139,250,0.5),transparent);"></div>
     </div>
     <div class="timeline" id="timeline"></div>
   </div>
@@ -213,9 +221,9 @@
     <div class="flex items-center gap-4 mb-4 reveal">
       <span class="section-num text-sm">03</span>
       <h2 class="text-3xl md:text-4xl font-display font-bold text-white">SELECTED WORK</h2>
-      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(168,85,247,0.5),transparent);"></div>
+      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(167,139,250,0.5),transparent);"></div>
     </div>
-    <p class="text-muted mb-10 reveal font-mono text-sm">Models, agents, and pipelines that ship.</p>
+    <p class="text-ink/80 mb-10 reveal font-mono text-sm" style="text-shadow:0 1px 12px rgba(20,13,31,0.95);">Models, agents, and pipelines that ship.</p>
     <div class="grid md:grid-cols-2 gap-6" id="projects-grid"></div>
   </div>
 </section>
@@ -226,7 +234,7 @@
     <div class="flex items-center gap-4 mb-10 reveal">
       <span class="section-num text-sm">04</span>
       <h2 class="text-3xl md:text-4xl font-display font-bold text-white">STACK</h2>
-      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(168,85,247,0.5),transparent);"></div>
+      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(167,139,250,0.5),transparent);"></div>
     </div>
     <div class="grid md:grid-cols-2 gap-8 reveal">
       <div><h3 class="text-cyan chip-label mb-3 font-bold">AI & MACHINE LEARNING</h3><div class="flex flex-wrap gap-2" id="skills-ml"></div></div>
@@ -243,7 +251,7 @@
     <div class="flex items-center gap-4 mb-10 reveal">
       <span class="section-num text-sm">05</span>
       <h2 class="text-3xl md:text-4xl font-display font-bold text-white">CERTIFICATIONS</h2>
-      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(168,85,247,0.5),transparent);"></div>
+      <div class="flex-1 h-px" style="background:linear-gradient(90deg,rgba(167,139,250,0.5),transparent);"></div>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="certs-grid"></div>
   </div>
@@ -254,16 +262,16 @@
   <div class="max-w-2xl mx-auto relative z-10">
     <p class="font-display text-cyan text-xs tracking-[0.32em] mb-4 reveal uppercase">// Let's build</p>
     <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 reveal text-white">LET'S <span class="glow-violet" style="color:#c4a5ff;">CONNECT</span></h2>
-    <p class="text-ink/95 mb-10 reveal" style="text-shadow:0 1px 14px rgba(5,3,15,0.92);">I am looking for full-time roles in AI Engineering, Data Science, and Data Engineering. If you are building something intelligent, I would love to talk.</p>
+    <p class="text-ink/95 mb-10 reveal" style="text-shadow:0 1px 14px rgba(20,13,31,0.92);">I am looking for full-time roles in AI Engineering, Data Science, and Data Engineering. If you are building something intelligent, I would love to talk.</p>
     <div class="flex flex-wrap justify-center gap-4 reveal">
-      <a href="mailto:mangrulkarp@northeastern.edu" class="px-6 py-3 font-display font-bold text-sm tracking-wider rounded uppercase transition" style="background:#a855f7;color:#fff;" onmouseover="this.style.background='#22d3ee'" onmouseout="this.style.background='#a855f7'">Email Me</a>
+      <a href="mailto:mangrulkarp@northeastern.edu" class="px-6 py-3 font-display font-bold text-sm tracking-wider rounded uppercase transition" style="background:#a78bfa;color:#fff;" onmouseover="this.style.background='#c4b5fd'" onmouseout="this.style.background='#a78bfa'">Email Me</a>
       <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="px-6 py-3 border border-border bg-card rounded hover:border-violet transition font-mono text-sm uppercase tracking-wider">LinkedIn</a>
       <a href="https://github.com/Priyanka5317/" target="_blank" class="px-6 py-3 border border-border bg-card rounded hover:border-violet transition font-mono text-sm uppercase tracking-wider">GitHub</a>
     </div>
   </div>
 </section>
 
-<footer class="py-8 px-6 text-center text-muted text-xs font-display tracking-wider border-t border-border relative" style="z-index:1;">
+<footer class="py-8 px-6 text-center text-ink/80 text-xs font-display tracking-wider border-t border-border relative" style="z-index:1; text-shadow:0 1px 12px rgba(20,13,31,0.95);">
   <p>PRIYANKA MANGRULKAR · AI · DATA SCIENCE · DATA ENGINEERING · © 2026</p>
 </footer>
 
@@ -310,9 +318,9 @@ timeline.forEach(item => {
   div.className = `tl-item ${item.side} reveal ${item.side==='left'?'fl':'fr'}`;
   div.innerHTML = `
     <span class="tl-dot"></span>
-    <div class="bg-card border border-border rounded-lg p-5 hover:border-violet/50 transition">
+    <div class="bg-card border border-border rounded-2xl p-5 hover:border-violet/50 transition">
       <div class="flex items-center gap-2 mb-2 ${item.side==='left'?'md:justify-end':''}">
-        <span class="px-2 py-1 rounded chip-label text-violet" style="background:rgba(168,85,247,0.12);">${item.type}</span>
+        <span class="px-2 py-1 rounded chip-label text-violet" style="background:rgba(167,139,250,0.12);">${item.type}</span>
         <span class="font-mono text-xs text-muted">${item.date}</span>
       </div>
       <h3 class="font-semibold text-white text-lg">${item.title}</h3>
@@ -326,12 +334,12 @@ const grid = document.getElementById('projects-grid');
 projects.forEach((p,i) => {
   const a = document.createElement('a');
   a.href = p.github; a.target = '_blank';
-  a.className = 'card reveal tw block bg-card border border-border rounded-lg overflow-hidden';
+  a.className = 'card reveal tw block bg-card border border-border rounded-2xl overflow-hidden';
   a.style.transitionDelay = (i%2)*0.1 + 's';
   a.innerHTML = `
-    <div class="aspect-[400/220] overflow-hidden border-b border-border relative" style="background:#0e0a22;">
+    <div class="aspect-[400/220] overflow-hidden border-b border-border relative" style="background:#1e1533;">
       <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover"/>
-      <div class="absolute top-2 right-2 text-white chip-label px-2 py-0.5 rounded" style="background:#a855f7;">${String(i+1).padStart(2,'0')}</div>
+      <div class="absolute top-2 right-2 text-white chip-label px-2 py-0.5 rounded" style="background:#a78bfa;">${String(i+1).padStart(2,'0')}</div>
     </div>
     <div class="p-6">
       <h3 class="text-lg font-bold text-white font-display mb-4">${p.title}</h3>
@@ -341,7 +349,7 @@ projects.forEach((p,i) => {
         <div><p class="chip-label text-cyan mb-1">▸ IMPACT</p><p class="text-sm text-ink/80">${p.impact}</p></div>
       </div>
       <div class="flex flex-wrap gap-2 pt-3 border-t border-border">
-        ${p.tags.map(t=>`<span class="px-2 py-1 rounded chip-label" style="color:#c4a5ff;background:rgba(168,85,247,0.12);">${t}</span>`).join('')}
+        ${p.tags.map(t=>`<span class="px-2 py-1 rounded chip-label" style="color:#c4a5ff;background:rgba(167,139,250,0.12);">${t}</span>`).join('')}
       </div>
     </div>`;
   grid.appendChild(a);
@@ -361,7 +369,7 @@ Object.entries(skills).forEach(([k,arr]) => {
 const certsGrid = document.getElementById('certs-grid');
 certs.forEach((c,i) => {
   const div = document.createElement('div');
-  div.className = 'reveal tw p-6 bg-card border border-border rounded-lg hover:border-violet/50 transition';
+  div.className = 'reveal tw p-6 bg-card border border-border rounded-2xl hover:border-violet/50 transition';
   div.style.transitionDelay = (i*0.08)+'s';
   div.innerHTML = `
     <div class="chip-label text-magenta mb-3">CERTIFIED</div>
@@ -398,7 +406,7 @@ document.addEventListener('visibilitychange', ()=>{ if(revealsArmed) checkReveal
   renderer.setSize(innerWidth, innerHeight);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x05030f, 0.018);
+  scene.fog = new THREE.FogExp2(0x140d1f, 0.018);
   const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 300);
   camera.position.set(0, 0, 60);
 
@@ -421,9 +429,9 @@ document.addEventListener('visibilitychange', ()=>{ if(revealsArmed) checkReveal
   const colors = new Float32Array(COUNT*3);
   const radii = new Float32Array(COUNT);
   const branches = 4, spin = 1.1, randomness = 0.55;
-  const cInner = new THREE.Color(0xec4899); // magenta core
-  const cMid   = new THREE.Color(0xa855f7); // violet
-  const cOuter = new THREE.Color(0x22d3ee); // cyan edge
+  const cInner = new THREE.Color(0xf9a8d4); // rose core
+  const cMid   = new THREE.Color(0xc4b5fd); // lavender
+  const cOuter = new THREE.Color(0xa78bfa); // soft violet edge
   for (let i=0;i<COUNT;i++){
     const i3=i*3;
     const r = Math.pow(Math.random(),0.7)*42 + 1.5;
@@ -442,7 +450,7 @@ document.addEventListener('visibilitychange', ()=>{ if(revealsArmed) checkReveal
   const geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.BufferAttribute(positions,3));
   geo.setAttribute('color', new THREE.BufferAttribute(colors,3));
-  const mat = new THREE.PointsMaterial({ size:0.7, map:sprite, vertexColors:true, transparent:true, opacity:0.95, depthWrite:false, blending:THREE.AdditiveBlending, sizeAttenuation:true });
+  const mat = new THREE.PointsMaterial({ size:0.7, map:sprite, vertexColors:true, transparent:true, opacity:0.82, depthWrite:false, blending:THREE.AdditiveBlending, sizeAttenuation:true });
   const galaxy = new THREE.Points(geo, mat);
   scene.add(galaxy);
 
@@ -450,7 +458,7 @@ document.addEventListener('visibilitychange', ()=>{ if(revealsArmed) checkReveal
   const sCount=1200, sPos=new Float32Array(sCount*3);
   for(let i=0;i<sCount;i++){ const i3=i*3; sPos[i3]=(Math.random()-0.5)*260; sPos[i3+1]=(Math.random()-0.5)*200; sPos[i3+2]=(Math.random()-0.5)*260; }
   const sGeo=new THREE.BufferGeometry(); sGeo.setAttribute('position',new THREE.BufferAttribute(sPos,3));
-  const stars=new THREE.Points(sGeo, new THREE.PointsMaterial({ size:0.5, color:0x9d8fff, transparent:true, opacity:0.5, depthWrite:false, blending:THREE.AdditiveBlending }));
+  const stars=new THREE.Points(sGeo, new THREE.PointsMaterial({ size:0.5, color:0xc8b8ff, transparent:true, opacity:0.45, depthWrite:false, blending:THREE.AdditiveBlending }));
   scene.add(stars);
 
   let speed=0.05, target=0.05, lastScroll=scrollY||0;
