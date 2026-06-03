@@ -57,6 +57,11 @@
   .reveal{ transform:translateY(18px) scale(.985) rotate(-.4deg); }
   .reveal.show{ transform:none; }
   @media (prefers-reduced-motion: reduce){ .reveal{ transition:opacity .3s; transform:none; } .blob,.spin-badge svg,.mq{ animation:none; } }
+  .skill-sticker{ display:inline-block; padding:.32rem .72rem; border-radius:999px; font-family:'Archivo'; font-weight:600; font-size:.74rem; background:#fff; color:var(--ink); border:1.5px solid var(--ink); box-shadow:2px 2px 0 var(--ink); transition:transform .18s, box-shadow .18s, background .18s, color .18s, border-color .18s; cursor:default; }
+  .skill-sticker:nth-child(3n){ transform:rotate(-3deg); background:#efe7fb; border-color:var(--accent); box-shadow:2px 2px 0 var(--accent); }
+  .skill-sticker:nth-child(3n+1){ transform:rotate(2deg); }
+  .skill-sticker:nth-child(4n){ background:#fde7f1; }
+  .skill-sticker:hover{ transform:rotate(0) translateY(-2px) scale(1.05); background:var(--accent); color:#fff; border-color:var(--accent); box-shadow:4px 4px 0 var(--ink); }
   #prog{ position:fixed; top:0; left:0; height:3px; width:0; background:var(--accent); z-index:60; transition:width .08s linear; }
   #cursor{ position:fixed; top:0; left:0; width:24px; height:24px; border:1.5px solid var(--accent); border-radius:50%; transform:translate(-50%,-50%); pointer-events:none; z-index:60; opacity:0; transition:opacity .3s, width .2s, height .2s, background .2s; mix-blend-mode:multiply; }
   #cursor.big{ width:56px; height:56px; background:var(--accent); }
@@ -98,15 +103,11 @@
       <p class="soft leading-relaxed sm:col-span-2 max-w-xl">I build intelligent systems end to end: machine-learning models, AI-agent applications, and the data pipelines that feed them. From multi-agent orchestration to ETL at scale.</p>
       <div class="ar text-sm">
         <p class="lbl muted mb-2">Currently</p>
-        <p class="font-semibold">M.S. Information Systems</p>
-        <p class="muted">Northeastern University</p>
+        <p class="font-semibold">Looking for opportunities</p>
+        <p class="muted">AI, Data Science &amp; Data Engineering</p>
       </div>
     </div>
   </section>
-
-  <div class="marquee topline py-4 reveal">
-    <div class="mq" id="mq"></div>
-  </div>
 
   <section class="topline py-12">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="stats"></div>
@@ -195,10 +196,10 @@ const projects = [
   { title:'Sleep Aid NLP Sentiment', tags:'Python / NLP / TextBlob', problem:'Marketers had no structured read on what customers valued in reviews.', solution:'Processed 10,000+ Walmart reviews with pandas, n-grams, word clouds, and TextBlob sentiment scoring.', impact:'Revealed a 15% higher preference for 10mg doses and lifted insight relevance 40%.', url:'https://github.com/Priyanka5317/' },
 ];
 const skills = {
-  'AI & Machine Learning':'Scikit-learn, statsmodels, predictive modeling, logistic regression, survival analysis, A/B testing, NLP, LangGraph agents, Snowflake Cortex AI',
-  'Data Engineering':'ETL / ELT, Apache Airflow, AWS Glue, dbt, star-schema design, data quality, Pandas, NumPy',
-  'Languages & Tools':'Python, R, SQL, C/C++, MATLAB, Git',
-  'Data Platforms':'Snowflake, Redshift, Oracle, MySQL, SQL Server, Hadoop',
+  'AI & Machine Learning':['Scikit-learn','statsmodels','Predictive Modeling','Logistic Regression','Survival Analysis','A/B Testing','NLP','LangGraph Agents','Snowflake Cortex AI'],
+  'Data Engineering':['ETL / ELT','Apache Airflow','AWS Glue','dbt','Star Schema','Data Quality','Pandas','NumPy'],
+  'Languages & Tools':['Python','R','SQL','C/C++','MATLAB','Git'],
+  'Data Platforms':['Snowflake','Redshift','Oracle','MySQL','SQL Server','Hadoop'],
 };
 const certs = [
   ['Anthropic Certified','Claude AI, Prompt Engineering & AI Applications'],
@@ -231,10 +232,10 @@ document.getElementById('work-list').innerHTML = projects.map((p,i)=>`
     </div>
   </a>`).join('');
 
-document.getElementById('skills').innerHTML = Object.entries(skills).map(([k,v])=>`
+document.getElementById('skills').innerHTML = Object.entries(skills).map(([k,arr])=>`
   <div class="reveal">
-    <p class="ar font-bold mb-1">${k}</p>
-    <p class="soft text-sm leading-relaxed">${v}</p>
+    <p class="ar font-bold mb-3">${k}</p>
+    <div class="flex flex-wrap gap-2.5">${arr.map(s=>`<span class="skill-sticker">${s}</span>`).join('')}</div>
   </div>`).join('');
 
 document.getElementById('certs').innerHTML = certs.map((c,i)=>`
@@ -275,9 +276,6 @@ window.addEventListener('mousemove', e=>{ cur.style.opacity='1'; cur.style.left=
 document.addEventListener('mouseover', e=>{ if(e.target.closest('a, .idx')) cur.classList.add('big'); });
 document.addEventListener('mouseout', e=>{ if(e.target.closest('a, .idx')) cur.classList.remove('big'); });
 
-const mqWords = ['Machine Learning','LangGraph','Airflow','Snowflake','dbt','Python','Predictive Models','ETL Pipelines'];
-const mqSet = mqWords.map(w=>`<b>${w}</b><span class="sp">&#10022;</span>`).join('');
-document.getElementById('mq').innerHTML = mqSet + mqSet;
 
 function checkReveals(){
   const vh = window.innerHeight || document.documentElement.clientHeight;
