@@ -57,6 +57,16 @@
   .reveal{ transform:translateY(18px) scale(.985) rotate(-.4deg); }
   .reveal.show{ transform:none; }
   @media (prefers-reduced-motion: reduce){ .reveal{ transition:opacity .3s; transform:none; } .blob,.spin-badge svg,.mq{ animation:none; } }
+  body{ background-image:radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px); background-size:24px 24px; }
+  .lbl::before{ content:'\2726  '; color:var(--accent); }
+  .spark{ position:fixed; z-index:0; color:var(--accent); pointer-events:none; opacity:.4; animation:twinkle 4.5s ease-in-out infinite; }
+  @keyframes twinkle{ 0%,100%{ opacity:.12; transform:scale(.8); } 50%{ opacity:.55; transform:scale(1.2) rotate(18deg); } }
+  .rail{ position:fixed; bottom:0; z-index:40; display:none; flex-direction:column; align-items:center; gap:18px; }
+  @media(min-width:1120px){ .rail{ display:flex; } }
+  .rail-l{ left:28px; } .rail-r{ right:28px; }
+  .rail::after{ content:''; width:1px; height:84px; background:var(--ink); opacity:.35; }
+  .rail a, .rail .v{ writing-mode:vertical-rl; font-family:'Archivo'; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); transition:color .25s, transform .25s; }
+  .rail a:hover{ color:var(--accent); transform:translateY(-3px); }
   .skill-sticker{ display:inline-block; padding:.32rem .72rem; border-radius:999px; font-family:'Archivo'; font-weight:600; font-size:.74rem; background:#fff; color:var(--ink); border:1.5px solid var(--ink); box-shadow:2px 2px 0 var(--ink); transition:transform .18s, box-shadow .18s, background .18s, color .18s, border-color .18s; cursor:default; }
   .skill-sticker:nth-child(3n){ transform:rotate(-3deg); background:#efe7fb; border-color:var(--accent); box-shadow:2px 2px 0 var(--accent); }
   .skill-sticker:nth-child(3n+1){ transform:rotate(2deg); }
@@ -73,6 +83,12 @@
 <body class="antialiased">
 <div id="prog"></div>
 <div id="cursor"></div>
+<div class="rail rail-l">
+  <a href="mailto:mangrulkarp@northeastern.edu">Email</a>
+  <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank">LinkedIn</a>
+  <a href="https://github.com/Priyanka5317/" target="_blank">GitHub</a>
+</div>
+<div class="rail rail-r"><span class="v">Boston, MA &middot; Open to Work</span></div>
 <div class="blob b1"></div>
 <div class="blob b2"></div>
 <div class="max-w-5xl mx-auto px-6 relative" style="z-index:10;">
@@ -292,6 +308,7 @@ function checkReveals(){
 window.addEventListener('scroll', checkReveals, { passive:true });
 window.addEventListener('resize', checkReveals);
 document.addEventListener('visibilitychange', checkReveals);
+[[6,20],[13,70],[88,14],[92,60],[49,9],[80,42],[9,46],[95,88],[42,90],[70,82],[24,33],[60,28]].forEach((p,i)=>{ const s=document.createElement('div'); s.className='spark'; s.textContent=['✦','✧','✵','✺'][i%4]; s.style.left=p[0]+'vw'; s.style.top=p[1]+'vh'; s.style.fontSize=(11+(i%3)*7)+'px'; s.style.animationDelay=(i*0.35)+'s'; document.body.appendChild(s); });
 checkReveals(); setTimeout(checkReveals, 100);
 </script>
 </body>
