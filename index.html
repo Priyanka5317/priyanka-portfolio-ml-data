@@ -25,12 +25,45 @@
   .idx:hover .t{ padding-left:.6rem; color:var(--accent); }
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
   .reveal.show{ opacity:1; transform:none; }
-  @media (prefers-reduced-motion: reduce){ .reveal{ transition:opacity .3s; transform:none; } }
+  /* ===== quirk ===== */
+  .blob{ position:fixed; border-radius:50%; filter:blur(72px); opacity:.4; z-index:0; pointer-events:none; }
+  .b1{ width:360px; height:360px; top:-80px; right:-60px; background:#c4b5fd; animation:drift1 19s ease-in-out infinite; }
+  .b2{ width:320px; height:320px; bottom:8%; left:-90px; background:#f4a6c8; animation:drift2 24s ease-in-out infinite; }
+  @keyframes drift1{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(-34px,44px) } }
+  @keyframes drift2{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(44px,-34px) } }
+
+  .spin-badge{ position:absolute; top:1rem; right:0; width:104px; height:104px; }
+  .spin-badge svg{ width:100%; height:100%; animation:spin 16s linear infinite; }
+  .spin-badge .mid{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.3rem; color:var(--accent); }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media(max-width:640px){ .spin-badge{ display:none; } }
+
+  .squig{ position:relative; white-space:nowrap; }
+  .squig::after{ content:''; position:absolute; left:-1%; right:-1%; bottom:-0.16em; height:0.26em;
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 12'><path d='M2 7 q 8 -7 16 0 t 16 0 t 16 0 t 16 0' fill='none' stroke='%237c3aed' stroke-width='3' stroke-linecap='round'/></svg>") repeat-x; background-size:auto 100%; }
+
+  .marquee{ overflow:hidden; white-space:nowrap; }
+  .mq{ display:inline-block; animation:mq 28s linear infinite; }
+  .mq b{ font-family:'Archivo'; font-weight:800; text-transform:uppercase; font-size:clamp(1.3rem,3.5vw,2.2rem); }
+  .mq .sp{ color:var(--accent); margin:0 .7rem; }
+  @keyframes mq{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+
+  .sticker{ display:inline-block; padding:.18rem .6rem; border:1px solid var(--ink); border-radius:999px; font-size:.6rem; font-family:'Archivo'; font-weight:600; text-transform:uppercase; letter-spacing:.08em; transition:transform .2s, color .2s, border-color .2s; }
+  .sticker:nth-child(2n){ transform:rotate(-3deg); } .sticker:nth-child(3n){ transform:rotate(2.5deg); }
+  .idx:hover .sticker{ transform:rotate(0) scale(1.06); border-color:var(--accent); color:var(--accent); }
+  .arrow{ opacity:0; transform:translateX(-8px); transition:opacity .25s, transform .25s; }
+  .idx:hover .arrow{ opacity:1; transform:none; }
+
+  .reveal{ transform:translateY(18px) scale(.985) rotate(-.4deg); }
+  .reveal.show{ transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ transition:opacity .3s; transform:none; } .blob,.spin-badge svg,.mq{ animation:none; } }
   ::selection{ background:#7c3aed; color:#fff; }
 </style>
 </head>
 <body class="antialiased">
-<div class="max-w-5xl mx-auto px-6">
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="max-w-5xl mx-auto px-6 relative" style="z-index:10;">
 
   <header class="flex justify-between items-center py-6 ar text-sm font-medium uppercase tracking-wider">
     <a href="#top">Priyanka Mangrulkar</a>
@@ -43,10 +76,15 @@
     <span class="accent">Open to Work</span>
   </header>
 
-  <section id="top" class="topline py-16 sm:py-24">
+  <section id="top" class="topline py-16 sm:py-24 relative">
+    <div class="spin-badge reveal">
+      <svg viewBox="0 0 100 100"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+        <text font-size="9.5" letter-spacing="1.5" class="ar" fill="#7c3aed" font-weight="600"><textPath href="#circ">OPEN TO WORK &middot; LET'S TALK &middot; </textPath></text></svg>
+      <span class="mid">&#10022;</span>
+    </div>
     <p class="ar uppercase tracking-[0.3em] text-xs accent mb-8 reveal">AI Engineer &middot; Data Scientist &middot; Data Engineer</p>
     <h1 class="ar font-black leading-[0.93] tracking-tight reveal" style="font-size:clamp(2.6rem,8.5vw,6.4rem);">
-      I turn raw data<br/>into models<br/>that <span class="accent">ship</span>.
+      I turn raw data<br/>into models<br/>that <span class="accent squig">ship</span>.
     </h1>
     <div class="grid sm:grid-cols-3 gap-8 mt-16 reveal">
       <p class="soft leading-relaxed sm:col-span-2 max-w-xl">I build intelligent systems end to end: machine-learning models, AI-agent applications, and the data pipelines that feed them. From multi-agent orchestration to ETL at scale.</p>
@@ -57,6 +95,10 @@
       </div>
     </div>
   </section>
+
+  <div class="marquee topline py-4 reveal">
+    <div class="mq" id="mq"></div>
+  </div>
 
   <section id="about" class="topline py-14">
     <div class="grid md:grid-cols-12 gap-6">
@@ -154,8 +196,9 @@ document.getElementById('work-list').innerHTML = projects.map((p,i)=>`
   <a href="${p.url}" target="_blank" class="idx block py-7 reveal ${i?'topline':''}">
     <div class="flex items-baseline justify-between gap-4">
       <h3 class="ar text-2xl sm:text-3xl font-bold t">${p.title}</h3>
-      <span class="muted ar text-xs whitespace-nowrap">${p.tags}</span>
+      <span class="arrow ar accent text-2xl">&rarr;</span>
     </div>
+    <div class="flex flex-wrap gap-2 mt-2">${p.tags.split(' / ').map(t=>`<span class="sticker">${t}</span>`).join('')}</div>
     <div class="grid sm:grid-cols-3 gap-5 mt-4 max-w-3xl">
       <div><span class="pi">The Problem</span><p class="soft text-sm leading-relaxed">${p.problem}</p></div>
       <div><span class="pi">The Solution</span><p class="soft text-sm leading-relaxed">${p.solution}</p></div>
@@ -174,6 +217,10 @@ document.getElementById('certs').innerHTML = certs.map((c,i)=>`
     <h3 class="ar font-semibold">${c[0]}</h3>
     <p class="muted text-sm text-right max-w-xs">${c[1]}</p>
   </div>`).join('');
+
+const mqWords = ['Machine Learning','LangGraph','Airflow','Snowflake','dbt','Python','Predictive Models','ETL Pipelines'];
+const mqSet = mqWords.map(w=>`<b>${w}</b><span class="sp">&#10022;</span>`).join('');
+document.getElementById('mq').innerHTML = mqSet + mqSet;
 
 function checkReveals(){
   const vh = window.innerHeight || document.documentElement.clientHeight;
