@@ -53,6 +53,7 @@
   .idx:hover .sticker{ transform:rotate(0) scale(1.06); border-color:var(--accent); color:var(--accent); }
   .arrow{ opacity:0; transform:translateX(-8px); transition:opacity .25s, transform .25s; }
   .idx:hover .arrow{ opacity:1; transform:none; }
+  .proj:hover .arrow{ opacity:1; transform:none; } .proj:hover .t{ color:var(--accent); }
 
   .reveal{ transform:translateY(18px) scale(.985) rotate(-.4deg); }
   .reveal.show{ transform:none; }
@@ -84,7 +85,7 @@
 <div id="prog"></div>
 <div id="cursor"></div>
 <div class="rail rail-l">
-  <a href="mailto:mangrulkarp@northeastern.edu">Email</a>
+  <a href="mailto:priyankaa.mangrulkar@gmail.com">Email</a>
   <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank">LinkedIn</a>
   <a href="https://github.com/Priyanka5317/" target="_blank">GitHub</a>
 </div>
@@ -159,7 +160,7 @@
   <section id="work" class="topline py-14">
     <div class="grid md:grid-cols-12 gap-6">
       <div class="md:col-span-3"><p class="lbl muted reveal">04 / Selected Work</p><p class="muted text-xs mt-2 reveal">Problem &rarr; Solution &rarr; Impact</p></div>
-      <div class="md:col-span-9" id="work-list"></div>
+      <div class="md:col-span-9 grid sm:grid-cols-2 gap-x-7 gap-y-10" id="work-list"></div>
     </div>
   </section>
 
@@ -181,7 +182,7 @@
     <p class="ar uppercase tracking-[0.3em] text-xs accent mb-6 reveal">07 / Contact</p>
     <h2 class="ar font-black leading-tight tracking-tight mb-8 reveal" style="font-size:clamp(2rem,6vw,4rem);">Let's build something.</h2>
     <div class="flex flex-wrap gap-8 ar text-lg reveal">
-      <a href="mailto:mangrulkarp@northeastern.edu" class="navlink border-b-2" style="border-color:var(--accent);">Email</a>
+      <a href="mailto:priyankaa.mangrulkar@gmail.com" class="navlink border-b-2" style="border-color:var(--accent);">Email</a>
       <a href="https://www.linkedin.com/in/priyanka-mangrulkar/" target="_blank" class="navlink muted">LinkedIn</a>
       <a href="https://github.com/Priyanka5317/" target="_blank" class="navlink muted">GitHub</a>
     </div>
@@ -203,13 +204,13 @@ const education = [
   { date:'2019 - 2023', title:'B.E. Computer Electronics & Telecommunication', org:'Savitribai Phule Pune University', desc:'Patent: signal-processing classifier for chronic-disease diagnosis (India, 2023).' },
 ];
 const projects = [
-  { title:'PriceKeel', tags:'Pricing Analytics / SaaS / Python', problem:'Usage-based SaaS teams lose revenue to inconsistent discounting and cannot see where price realization leaks.', solution:'Built a pricing-diagnostics tool that analyzes a CSV of closed deals to compute price realization, find the win point where discounting stops improving win rate, and give per-deal discount guidance, with no warehouse or CRM integration.', impact:'Gives VP Pricing teams a fast read on discount leakage and a data-backed discount policy.', url:'https://pricekeel.com' },
-  { title:'PodcastIQ', tags:'LangGraph / Snowflake / dbt', problem:'Podcast teams could not see why listeners drop off or which segments drive engagement.', solution:'An end-to-end pipeline on Airflow into Snowflake, dbt models across 12,000+ tagged segments, Snowflake Cortex AI semantic search, and a 6-agent LangGraph orchestration layer.', impact:'Surfaced segment-level engagement signals and AI-assisted retrieval over the full catalog.', url:'https://github.com/Priyanka5317/PodcastIQ' },
-  { title:'SwipeHire.io', tags:'AI/ML / Full-Stack', problem:'Job boards bury candidates in irrelevant listings and recruiters in unqualified applicants.', solution:'Co-built an AI recruitment platform with swipe-based matching driven by algorithms that learn from every interaction.', impact:'Streamlined matching, reducing time-to-match for candidates and employers.', url:'https://swipehire.io' },
-  { title:'F1 Tire Strategy Modeling', tags:'R / Survival Analysis', problem:'A wrong tire call can cost a race, so teams must model grip against durability.', solution:'An R Shiny app merging lap and weather data with Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.', impact:'Improved simulated pit-strategy success 25% with real-time tactical what-ifs.', url:'https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing' },
-  { title:'Pulse Diagnosis Classifier', tags:'Signal Processing / C++', problem:'Early chronic-disease detection often needs expensive, invasive testing.', solution:'A non-invasive IR-sensor system on Arduino UNO capturing 1,000+ pulse datasets, with C/C++ signal-processing classification algorithms.', impact:'Reached 90%+ diagnostic accuracy and secured Indian Patent No. 202321031953 (2023).', url:'https://github.com/Priyanka5317/' },
-  { title:'WhoozCooking Data Platform', tags:'Python / AWS Glue / Redshift', problem:'Teams lacked a unified, reliable backend for user and engagement data.', solution:'Python APIs and ETL workflows feeding a Redshift warehouse with schema design and data-quality monitoring.', impact:'Cut data processing time 50% and enabled self-serve analytics across the org.', url:'https://github.com/Priyanka5317/WhoozCookingAPI' },
-  { title:'Sleep Aid NLP Sentiment', tags:'Python / NLP / TextBlob', problem:'Marketers had no structured read on what customers valued in reviews.', solution:'Processed 10,000+ Walmart reviews with pandas, n-grams, word clouds, and TextBlob sentiment scoring.', impact:'Revealed a 15% higher preference for 10mg doses and lifted insight relevance 40%.', url:'https://github.com/Priyanka5317/' },
+  { title:'PriceKeel', img:'/images/proj-pricekeel.png', tags:'Pricing Analytics / SaaS / Python', problem:'Usage-based SaaS teams lose revenue to inconsistent discounting and cannot see where price realization leaks.', solution:'Built a pricing-diagnostics tool that analyzes a CSV of closed deals to compute price realization, find the win point where discounting stops improving win rate, and give per-deal discount guidance, with no warehouse or CRM integration.', impact:'Gives VP Pricing teams a fast read on discount leakage and a data-backed discount policy.', url:'https://pricekeel.com' },
+  { title:'PodcastIQ', img:'/images/proj-podcastiq.svg', tags:'LangGraph / Snowflake / dbt', problem:'Podcast teams could not see why listeners drop off or which segments drive engagement.', solution:'An end-to-end pipeline on Airflow into Snowflake, dbt models across 12,000+ tagged segments, Snowflake Cortex AI semantic search, and a 6-agent LangGraph orchestration layer.', impact:'Surfaced segment-level engagement signals and AI-assisted retrieval over the full catalog.', url:'https://github.com/Priyanka5317/PodcastIQ' },
+  { title:'SwipeHire.io', img:'/images/proj-swipehire.png', tags:'AI/ML / Full-Stack', problem:'Job boards bury candidates in irrelevant listings and recruiters in unqualified applicants.', solution:'Co-built an AI recruitment platform with swipe-based matching driven by algorithms that learn from every interaction.', impact:'Streamlined matching, reducing time-to-match for candidates and employers.', url:'https://swipehire.io' },
+  { title:'F1 Tire Strategy Modeling', img:'/images/proj-f1.svg', tags:'R / Survival Analysis', problem:'A wrong tire call can cost a race, so teams must model grip against durability.', solution:'An R Shiny app merging lap and weather data with Kaplan-Meier survival curves and mixed-effects models to predict tire degradation.', impact:'Improved simulated pit-strategy success 25% with real-time tactical what-ifs.', url:'https://github.com/Priyanka5317/Statistical-Analysis-of-Tire-Performance-and-Pit-Strategy-in-Formula-1-Racing' },
+  { title:'Pulse Diagnosis Classifier', img:'/images/proj-pulse.svg', tags:'Signal Processing / C++', problem:'Early chronic-disease detection often needs expensive, invasive testing.', solution:'A non-invasive IR-sensor system on Arduino UNO capturing 1,000+ pulse datasets, with C/C++ signal-processing classification algorithms.', impact:'Reached 90%+ diagnostic accuracy and secured Indian Patent No. 202321031953 (2023).', url:'https://github.com/Priyanka5317/' },
+  { title:'WhoozCooking Data Platform', img:'/images/proj-whoozcooking.svg', tags:'Python / AWS Glue / Redshift', problem:'Teams lacked a unified, reliable backend for user and engagement data.', solution:'Python APIs and ETL workflows feeding a Redshift warehouse with schema design and data-quality monitoring.', impact:'Cut data processing time 50% and enabled self-serve analytics across the org.', url:'https://github.com/Priyanka5317/WhoozCookingAPI' },
+  { title:'Sleep Aid NLP Sentiment', img:'/images/proj-sleep.svg', tags:'Python / NLP / TextBlob', problem:'Marketers had no structured read on what customers valued in reviews.', solution:'Processed 10,000+ Walmart reviews with pandas, n-grams, word clouds, and TextBlob sentiment scoring.', impact:'Revealed a 15% higher preference for 10mg doses and lifted insight relevance 40%.', url:'https://github.com/Priyanka5317/' },
 ];
 const skills = {
   'AI & Machine Learning':['Scikit-learn','statsmodels','Predictive Modeling','Logistic Regression','Survival Analysis','A/B Testing','NLP','LangGraph Agents','Snowflake Cortex AI'],
@@ -235,16 +236,19 @@ document.getElementById('exp').innerHTML = experience.map((e,i)=>`
   </div>`).join('');
 
 document.getElementById('work-list').innerHTML = projects.map((p,i)=>`
-  <a href="${p.url}" target="_blank" class="idx block py-7 reveal ${i?'topline':''}">
-    <div class="flex items-baseline justify-between gap-4">
-      <h3 class="ar text-2xl sm:text-3xl font-bold t">${p.title}</h3>
-      <span class="arrow ar accent text-2xl">&rarr;</span>
+  <a href="${p.url}" target="_blank" class="proj group block reveal">
+    <div class="overflow-hidden rounded-2xl" style="aspect-ratio:16/10; background:#fff; border:1px solid var(--line); box-shadow:0 14px 34px -22px rgba(124,58,237,0.45);">
+      <img src="${p.img}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover object-top transition duration-700 group-hover:scale-[1.06]"/>
+    </div>
+    <div class="flex items-baseline justify-between gap-3 mt-4">
+      <h3 class="ar text-xl font-bold t">${p.title}</h3>
+      <span class="arrow ar accent text-xl">&#8599;</span>
     </div>
     <div class="flex flex-wrap gap-2 mt-2">${p.tags.split(' / ').map(t=>`<span class="sticker">${t}</span>`).join('')}</div>
-    <div class="grid sm:grid-cols-3 gap-5 mt-4 max-w-3xl">
-      <div><span class="pi">The Problem</span><p class="soft text-sm leading-relaxed">${p.problem}</p></div>
-      <div><span class="pi">The Solution</span><p class="soft text-sm leading-relaxed">${p.solution}</p></div>
-      <div><span class="pi">The Impact</span><p class="soft text-sm leading-relaxed">${p.impact}</p></div>
+    <div class="mt-3 space-y-2">
+      <p class="text-sm leading-relaxed"><span class="pi" style="color:#7c3aed;">Problem</span><span class="soft">${p.problem}</span></p>
+      <p class="text-sm leading-relaxed"><span class="pi" style="color:#db2777;">Solution</span><span class="soft">${p.solution}</span></p>
+      <p class="text-sm leading-relaxed"><span class="pi" style="color:#16a34a;">Impact</span><span class="soft">${p.impact}</span></p>
     </div>
   </a>`).join('');
 
